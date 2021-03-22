@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'create.dart';
+import 'updateNote.dart';
 
 class Notes extends StatefulWidget {
   @override
@@ -64,6 +65,34 @@ class _NotesState extends State<Notes> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400)),
+                          trailing: Wrap(
+                            children: <Widget>[
+                              new IconButton(
+                                icon: new Icon(Icons.edit,
+                                    color: Colors.blueGrey),
+                                onPressed: () async {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UpdateNote(
+                                            documentId: document.documentID,
+                                            noteTitle: document['title'],
+                                            noteDescription: document['body'])),
+                                  );
+                                },
+                              ),
+                              new IconButton(
+                                icon: new Icon(Icons.delete, color: Colors.red),
+                                highlightColor: Colors.pink,
+                                onPressed: () async {
+                                  await Firestore.instance
+                                      .collection('notes')
+                                      .document(document.documentID)
+                                      .delete();
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
