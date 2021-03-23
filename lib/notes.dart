@@ -45,9 +45,24 @@ class _NotesState extends State<Notes> {
               case ConnectionState.waiting:
                 return new Text('Loading...');
               default:
+                if (snapshot.data.documents.length < 1) {
+                  return Container(
+                    margin: EdgeInsets.all(55),
+                    child: Text(
+                      "Welcome!! All your notes will appear here.",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white60,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                }
                 return new ListView(
                   children:
                       snapshot.data.documents.map((DocumentSnapshot document) {
+                    print("asdkjlasdjkl------------------->>>>>>>>>");
+                    print(snapshot.data.documents.length);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
