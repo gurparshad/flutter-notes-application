@@ -49,11 +49,11 @@ class _NotesState extends State<Notes> {
                   return Container(
                     margin: EdgeInsets.all(55),
                     child: Text(
-                      "Welcome!! All your notes will appear here.",
+                      "Your notes will appear here. Add notes by pressing the button below.",
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white60,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   );
@@ -61,8 +61,6 @@ class _NotesState extends State<Notes> {
                 return new ListView(
                   children:
                       snapshot.data.documents.map((DocumentSnapshot document) {
-                    print("asdkjlasdjkl------------------->>>>>>>>>");
-                    print(snapshot.data.documents.length);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
